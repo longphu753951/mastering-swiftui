@@ -25,7 +25,7 @@ struct mastering_swiftuiApp: App {
 
     var body: some Scene {
         WindowGroup {
-            Chapter4_LayoutView()
+            Chapter10()
         }
         .modelContainer(sharedModelContainer)
     }
