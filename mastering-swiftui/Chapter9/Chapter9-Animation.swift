@@ -31,7 +31,7 @@ struct Chapter9_Animation: View {
         /*/.animation(.default, value: heartSizeChanged)
         .animation(.spring(.bouncy, blendDuration: 1.0), value: circleColorChanged) */
         .onTapGesture {
-            withAnimation(.spring(.bouncy, blendDuration: 1.0)) {
+            withAnimation(.spring(.bouncy, blendDuration: 3.0)) {
                 self.circleColorChanged.toggle()
                 self.heartColorChanged.toggle()
             }
@@ -66,8 +66,8 @@ struct Chapter9_Animation: View {
                     .stroke(Color(.green), lineWidth: 3)
                     .frame(width: 30, height: 3)
                     .offset(x: isLoading ? 110 : -110, y: 0)
-                    .animation(.linear(duration: 1).repeatForever(autoreverses: true))
                     .onAppear() {
+                        withAnimation(.linear(duration: 1).repeatForever(autoreverses: true)){}
                         isLoading = true
                     }
             }
@@ -85,10 +85,10 @@ struct Chapter9_Animation: View {
                     .frame(width: 150, height: 150)
                     .rotationEffect(Angle(degrees: -90))
             }.onAppear() {
-                Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
-                    self.progress += 0.05
+                Timer.scheduledTimer(withTimeInterval: 0.8, repeats: true) { timer in
+                    self.progress += 0.005
                     if(self.progress >= 1.0) {
-                        timer.invalidate()
+                        timer.invalidate() // Stop the interval
                     }
                 }
             }
